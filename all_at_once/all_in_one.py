@@ -11,7 +11,7 @@ def check_existing_values(sensor_type, place_name, sensor_value):
             value = (line.rstrip())
             list_of_values.append(value)
     
-    if str(sensor_value) in list_of_values:
+    if str(sensor_value) == list_of_values[-1] and str(sensor_value) == list_of_values[-2] and str(sensor_value) == list_of_values[-3]:
         return 6
     
 def write_current_value(sensor_value, sensor_type, place_name):
