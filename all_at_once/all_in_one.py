@@ -10,13 +10,16 @@ def check_existing_values(sensor_value, sensor_type, place_name):
         for line in f.readlines():
             value = (line.rstrip())
             list_of_values.append(value)
-    try:
-        if list_of_values[-1] and list_of_values[-2] == sensor_value: # checks if the last written value is the same as the current one
-            print("Nekde je problem lol(tohle potom bude oznameni ze se neco pokazilo)")
-        else:
-            print("Pohoda jahoda")
-    except:
-        pass
+
+    last_value = list_of_values[-1]
+    current_value = sensor_value
+    print(last_value)
+    print(current_value)
+    if last_value == current_value: # checks if the last written value is the same as the current one
+        print("Tohle je problemove hlaseni")
+        return False
+    else:
+        return True
     
 def write_current_value(sensor_value, sensor_type, place_name):
     # appends the current value for later comparison via check_existing_values function
@@ -73,9 +76,12 @@ for place_name in place_names:
             list_of_problems.append(f"{sensor_type}")
         else: 
             # check, write and remove old values
-            check_existing_values(value, sensor_type, place_name)
+            checker = check_existing_values(value, sensor_type, place_name)
             write_current_value(value, sensor_type, place_name)
             remove_old_values(sensor_type, place_name)
+            if checker == False:
+                number_of_problems = number_of_problems + 1
+                list_of_problems.append(f"{sensor_type}")
             
     # output of concrete problems
     if number_of_problems == 4:
