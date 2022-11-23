@@ -3,23 +3,16 @@ import os
 from conf_all_in_one import *
 
 
-def check_existing_values(sensor_value, sensor_type, place_name):
+def check_existing_values(sensor_type, place_name, sensor_value):
     # checks if there is not exacly the same value already
     list_of_values = []
     with open(f"data_dir/{place_name.name}_dir/{place_name.name}_values_of_{sensor_type}.txt", "r") as f:
         for line in f.readlines():
             value = (line.rstrip())
             list_of_values.append(value)
-
-    last_value = list_of_values[-1]
-    current_value = sensor_value
-    print(last_value)
-    print(current_value)
-    if last_value == current_value: # checks if the last written value is the same as the current one
-        print("Tohle je problemove hlaseni")
-        return False
-    else:
-        return True
+    
+    if str(sensor_value) in list_of_values:
+        return 6
     
 def write_current_value(sensor_value, sensor_type, place_name):
     # appends the current value for later comparison via check_existing_values function
@@ -70,16 +63,17 @@ for place_name in place_names:
         x = x + 1
         value = values(place_name, x)
         
+        
         # check if value is not None/error
         if value == None:
             number_of_problems = number_of_problems + 1
             list_of_problems.append(f"{sensor_type}")
         else: 
             # check, write and remove old values
-            checker = check_existing_values(value, sensor_type, place_name)
+            checker = check_existing_values(sensor_type, place_name, value)
             write_current_value(value, sensor_type, place_name)
             remove_old_values(sensor_type, place_name)
-            if checker == False:
+            if checker == 6:
                 number_of_problems = number_of_problems + 1
                 list_of_problems.append(f"{sensor_type}")
             
