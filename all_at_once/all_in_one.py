@@ -12,7 +12,7 @@ def check_existing_values(sensor_type, place_name, sensor_value):
             list_of_values.append(value)
     
     if str(sensor_value) == list_of_values[-1] and str(sensor_value) == list_of_values[-2] and str(sensor_value) == list_of_values[-3]:
-        return 6
+        return False
     
 def write_current_value(sensor_value, sensor_type, place_name):
     # appends the current value for later comparison via check_existing_values function
@@ -73,7 +73,7 @@ for place_name in place_names:
             checker = check_existing_values(sensor_type, place_name, value)
             write_current_value(value, sensor_type, place_name)
             remove_old_values(sensor_type, place_name)
-            if checker == 6:
+            if checker == False:
                 number_of_problems = number_of_problems + 1
                 list_of_problems.append(f"{sensor_type}")
             
