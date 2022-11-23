@@ -173,14 +173,17 @@ def extract_value_from_json_item(json, key):
     matches = jp.match(query, json)
     return float(matches[-1])
     
+sensor_json_list_pm = sensor_json(conf_url_pm_sensor)
+sensor_json_list_th = sensor_json(conf_url_th_sensor)
+    
 def values(place_name, x):
     # this function gets the values from json and returns them as variables !to put all of them in a list 'x' must be "list"
     list_of_values = []
     checkpoint = True
 
     try:
-        pm_sensor_item = sensor_item(sensor_json(conf_url_pm_sensor), place_name.conf_particle_sensor_id)
-        th_sensor_item = sensor_item(sensor_json(conf_url_th_sensor), place_name.conf_temperature_sensor_id)
+        pm_sensor_item = sensor_item(sensor_json_list_pm, place_name.conf_particle_sensor_id)
+        th_sensor_item = sensor_item(sensor_json_list_th, place_name.conf_temperature_sensor_id)
     except: 
         checkpoint = False
         return None
@@ -222,6 +225,7 @@ def values(place_name, x):
 place_names = [belehradska, 
                brno, 
                hrdlorezy,
+               mladaboleslav,
                smichov,
                vinohrady,
                stresovice,
@@ -229,7 +233,6 @@ place_names = [belehradska,
                ostrava, 
                dusni,
                ustinadlabem, 
-               mladaboleslav,
                plzen,
                jihlava,
                olomouc, 
