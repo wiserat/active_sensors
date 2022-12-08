@@ -290,12 +290,10 @@ def wrong_notification(place_name, my_message, context, list_of_problems):
         if delta.days < 30:
             start_email_sending = False
         elif delta.days >= 120:
-            for i in range(120, 10000, 90):
-                if delta.days == i:
-                    start_email_sending = True
-                    break
-                else:
-                    start_email_sending = False
+            if delta.days in range(120, 10000, 90):
+                start_email_sending = True
+            else:
+                start_email_sending = False
                 
     if start_email_sending == True:
         my_password = 'uzokwsyoiwsygion'
