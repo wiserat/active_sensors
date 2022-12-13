@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Add emails you want to notify</h1>
+<ul class="list-group" id="emails">
+  {% for email in user.emails %}
+  <li class="list-group-item">
+    {{ email.data }}
+    <button type="button" class="close" onClick="deleteEmail({{ email.id }})">
+      <span aria-hidden="true" name="close" id="close" class="form-control">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <textarea name="email" id="email" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="button-64" role="button"><span class="text">Add Email</span></button>
+  </div>
+</form>
+{% endblock %}
