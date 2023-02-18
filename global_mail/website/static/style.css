@@ -1,0 +1,77 @@
+.button-64 {
+  align-items: center;
+  background-image: None;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 15px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 50px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+body {
+  min-height: 100%;
+  max-height: 100vh;
+}
+
+footer {
+  display: table;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 25%;
+}
+
+text {
+  font-size: 18px;
+  color: rgb(99, 98, 98);
+}
+
+p {
+  font-size: 19px;
+  color: darkred;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: white;
+  color:black;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 20px;
+    min-width: 100px;
+  }
+}
